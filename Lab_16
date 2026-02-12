@@ -1,0 +1,22 @@
+import pandas as pd
+from sklearn.preprocessing import MinMaxScaler, StandardScaler, RobustScaler
+R=pd.read_csv(r"C:\Users\Jawad.A\Downloads\day17_scaling.csv")
+df = pd.DataFrame(R)
+
+#MinMax_scaler
+MM_scaler = MinMaxScaler()
+df_MM = df.copy()
+df_MM[["CRIM", "RM"]] = MM_scaler.fit_transform(df[["CRIM", "RM"]])
+print("\n", df_MM)
+
+#standard_scaler
+std_scaler = StandardScaler()
+df_std=df.copy()
+df_std[["CRIM", "RM"]] = std_scaler.fit_transform(df[["CRIM", "RM"]])
+print("\n", df_std[["CRIM", "RM"]])
+
+#robust_scaler
+robust_scaler = RobustScaler()
+df_robust=df.copy()
+df_robust[["CRIM", "RM"]] = robust_scaler.fit_transform(df[["CRIM", "RM"]])
+print("\n", df_robust)
