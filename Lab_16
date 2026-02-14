@@ -1,0 +1,16 @@
+import pandas as pd
+from sklearn.preprocessing import LabelEncoder
+
+df = pd.read_csv(r"C:\Users\Jawad.A\Downloads\day16_encoding.csv")
+
+le = LabelEncoder()
+df['city_label'] = le.fit_transform(df['city'])
+
+#one-hot-encoding
+df_final = pd.get_dummies(df, columns=['city'], prefix='city_oh')
+
+print("\n\nSummary Stats:")
+print(df['city_label'].describe())
+
+print("\n\n\nOne-Hot Encoded Sample:")
+print(df_final.head())
