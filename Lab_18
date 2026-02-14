@@ -1,0 +1,20 @@
+import pandas as pd
+
+df = pd.read_csv(r"C:\Users\Jawad.A\Downloads\day18_binning (1).csv")
+
+df['equal_width'] = pd.cut(df['age'], bins=3)
+df['equal_freq'] = pd.qcut(df['age'], q=3)
+
+bins = [0, 18, 35, 60, 100]
+labels = ['Child', 'Young Adult', 'Adult', 'Senior']
+df['domain_bins'] = pd.cut(df['age'], bins=bins, labels=labels)
+
+df_final = pd.get_dummies(df, columns=['domain_bins'], prefix='cat')
+
+print("Comparison of Values")
+print("\nEqual wid counts:\n", df['equal_width'].value_counts())
+print("\nEqual freq counts:\n", df['equal_freq'].value_counts())
+print("\nDomain bins counts:\n", df['domain_bins'].value_counts())
+
+print("\nOne hot encoding")
+print(df_final.head())
