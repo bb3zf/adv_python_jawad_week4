@@ -1,0 +1,22 @@
+import pandas as pd
+import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+R=pd.read_csv(r"C:\Users\Jawad.A\Downloads\day19_transform.csv")
+df=pd.DataFrame(R)
+
+sns.histplot(df["spend"], kde=True, color="purple")
+plt.title("Spend distribution (raw)")
+print("Before\n", plt.show())
+
+df19= df.copy()
+df19["spend"] = np.log1p(df19["spend"])
+df19["spend"] = np.sqrt(df19["spend"])
+
+sns.histplot(df19["spend"], kde=True, color="purple")
+plt.title("Spend distribution (raw)")
+print("After\n", plt.show())
+
+print(df19["spend"].describe())
+print("\nAfter\n", df)
