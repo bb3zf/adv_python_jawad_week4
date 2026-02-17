@@ -3,7 +3,7 @@ import numpy as np
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 
 df = pd.read_csv(r"C:\Users\Jawad.A\Downloads\day20_integration.csv")
-print("\nBaseline\n", df)
+print("\nBaseline\n", df.describe())
 
 ohe = OneHotEncoder(sparse_output=True, handle_unknown="ignore")
 city_encoded = ohe.fit_transform(df[["city"]])
@@ -16,4 +16,4 @@ df["pages_per_min"] = df["pages_viewed"] / (df["session_minutes"] + 1e-3)
 df["is_mobile_high_spend"] = (
         (df["device_type"] == "mobile") & (df["basket_value"] > df["basket_value"].median())).astype(int)
 
-print("\n\nEngineerd features\n", df)
+print("\n\nEngineerd features\n", df.describe())
